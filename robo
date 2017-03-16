@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+////////////////////////////////////////////////////////////////////////////////
+//             ___________                     __   __  _____
+//             \_   _____/______ __ __   _____/  |_|__|/ ____\__ __
+//              |    __) \_  __ \  |  \_/ ___\   __\  \   __<   |  |
+//              |     \   |  | \/  |  /\  \___|  | |  ||  |  \___  |
+//              \___  /   |__|  |____/  \___  >__| |__||__|  / ____|
+//                  \/                      \/               \/
+// -----------------------------------------------------------------------------
+//                          https://github.com/fructify
+//
+//          Designed and Developed by Brad Jones <brad @="bjc.id.au" />
+// -----------------------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////////
+
+require_once(__DIR__.'/vendor/autoload.php');
+
+class RoboFile extends \Robo\Tasks
+{
+    /**
+     * Runs unit tests, with code coverage report.
+     */
+    public function test()
+    {
+        exit
+        (
+            $this->taskPHPUnit()
+            ->arg('./tests')
+            ->option('coverage-clover', './build/logs/clover.xml')
+            ->run()->getExitCode()
+        );
+    }
+}
+
+exit(\Robo\Robo::run($_SERVER['argv'], RoboFile::class));

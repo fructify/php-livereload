@@ -176,7 +176,7 @@ class Frame
             }
             $payloadLength = unpack("N2", $packedPayloadLength);
 
-            return [($packedPayloadLength[1] << 32) | $packedPayloadLength[2] + 8, 8];
+            return [($payloadLength[1] << 32) | $payloadLength[2] + 8, 8];
         }
     }
 

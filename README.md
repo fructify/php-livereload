@@ -1,97 +1,25 @@
-# PHP Livereload
+# Fructify Reload
+[![Build Status](https://travis-ci.org/fructify/reload.svg?branch=master)](https://travis-ci.org/fructify/reload)
+[![Latest Stable Version](https://poser.pugx.org/fructify/reload/v/stable.svg)](https://packagist.org/packages/fructify/reload)
+[![Total Downloads](https://poser.pugx.org/fructify/reload/downloads.svg)](https://packagist.org/packages/fructify/reload)
+[![License](https://poser.pugx.org/fructify/reload/license.svg)](https://packagist.org/packages/fructify/reload)
+[![Coverage Status](https://coveralls.io/repos/github/fructify/reload/badge.svg?branch=master)](https://coveralls.io/github/fructify/reload?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fructify/reload/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fructify/reload/?branch=master)
 
-[![Build Status](https://travis-ci.org/RickySu/php-livereload.svg?branch=master)](https://travis-ci.org/RickySu/php-livereload)
-[![Coverage Status](https://coveralls.io/repos/RickySu/php-livereload/badge.svg?branch=master)](https://coveralls.io/r/RickySu/php-livereload?branch=master)
+**A live reload web socket server written in PHP.**
 
-php-livereload is a livereload server written in PHP.
+This is forked from [php-livereload](https://github.com/RickySu/php-livereload).
+No major changes apart from bumping to the latest version of [livereload.js](https://github.com/livereload/livereload-js)
+and a bit of a code tidy up (still ongoing). The intention of this fork is to
+provide an awesome developement experience for our Fructify WordPress ecosystem.
 
-php-livereload uses [livereload.js](https://github.com/livereload/livereload-js) -- a JavaScript file implementing the client side of the LiveReload protocol.
+## How to Install
+Installation via composer is easy:
 
-## Install
+    composer require fructify/reload
 
-Install php-livereload from [composer](http://getcomposer.org).
+## How to Use
+Please refer to the original readme at: https://github.com/RickySu/php-livereload
 
-```JSON
-{
-    "require": {
-        "rickysu/php-livereload": "dev-master"
-    }
-}
-```
-
-Get the command-line php-livereload
-
-    $ curl -O https://raw.github.com/RickySu/php-livereload/master/dist/reload.phar
-    $ chmod +x reload.phar
-    $ sudo mv reload.phar /usr/bin
-
-Install [LiveReload Safari/Chrome/Firefox extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)
-
-## Tests
-
-To run the test suite, you need install the dependencies via composer, then
-run PHPUnit.
-
-    $ composer install
-    $ phpunit
-
-## Using php-livereload
-define a livereload.json in your project root.
-
-livereload.json
-
-```JSON
-{
-    "period": 1,
-    "watch": {
-        "web/css/":   "*.css",
-        "web/js/":    "*.js",
-        "web/img/":   "\\.png|gif|jpg$"
-    }
-}
-```
-
-* period:  monitor file changes every 1 second.
-* watch: file and folder you want to watch
-
-#### Initialize a default livereload.json file.
-
-```
-$ php bin/reload livereload:init
-```
-
-#### Running Server.
-
-```
-$ php bin/reload server:run
-```
-
-#### Rolling Your Own Live Reload
-
- If you would like to trigger the live reload server yourself, simply POST files to the URL: `http://localhost:35729/changed`.
-Or if you rather roll your own live reload implementation use the following example:
-
-```
-# notify a single change
-curl http://localhost:35729/changed?files=style.css
-
-# notify using a longer path
-curl http://localhost:35729/changed?files=js/app.js
-
-# notify multiple changes, comma or space delimited
-curl http://localhost:35729/changed?files=index.html,style.css,docs/docco.css
-```
-
-Or you can bulk the information into a POST request, with body as a JSON array of files.
-
-```
-curl -X POST http://localhost:35729/changed -d '{ "files": ["style.css", "app.js"] }'
-
-# from a JSON file
-node -pe 'JSON.stringify({ files: ["some.css", "files.css"] })' > files.json
-curl -X POST -d @files.json http://localhost:35729
-```
-
-## License
-
-MIT, see LICENSE.
+--------------------------------------------------------------------------------
+Developed by Ricky Su & Brad Jones - brad@bjc.id.au

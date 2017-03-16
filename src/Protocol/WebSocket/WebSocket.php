@@ -1,7 +1,7 @@
 <?php
-namespace PHPLivereload\Protocol\WebSocket;
+namespace Fructify\Reload\Protocol\WebSocket;
 
-use PHPLivereload\Response\ResponseWebSocket;
+use Fructify\Reload\Response\ResponseWebSocket;
 
 /**
  * Description of WebSocket

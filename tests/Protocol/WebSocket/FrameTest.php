@@ -1,14 +1,14 @@
 <?php
-namespace PHPLivereload\Tests\Protocol\WebSocket;
+namespace Fructify\Reload\Tests\Protocol\WebSocket;
 
-use PHPLivereload\Protocol\WebSocket\Frame;
+use Fructify\Reload\Protocol\WebSocket\Frame;
 
 /**
  * Description of Message
  *
  * @author ricky
  */
-class FrameTest extends \PHPUnit_Framework_TestCase
+class FrameTest extends \PHPUnit\Framework\TestCase
 {
     public function test__close()
     {

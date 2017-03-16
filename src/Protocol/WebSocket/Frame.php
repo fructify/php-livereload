@@ -1,5 +1,5 @@
 <?php
-namespace PHPLivereload\Protocol\WebSocket;
+namespace Fructify\Reload\Protocol\WebSocket;
 
 /**
  * Description of Frame

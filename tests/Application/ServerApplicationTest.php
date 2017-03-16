@@ -1,9 +1,9 @@
 <?php
-namespace PHPLivereload\Tests\Application;
+namespace Fructify\Reload\Tests\Application;
 
-use PHPLivereload\Application\ServerApplication;
+use Fructify\Reload\Application\ServerApplication;
 use React\EventLoop\Factory as LoopFactory;
-use PHPLivereload\Protocol;
+use Fructify\Reload\Protocol;
 
 class MockServerApplication extends ServerApplication
 {
@@ -12,14 +12,14 @@ class MockServerApplication extends ServerApplication
     }
 }
 
-class ServerApplicationTest extends \PHPUnit_Framework_TestCase
+class ServerApplicationTest extends \PHPUnit\Framework\TestCase
 {
     public function test___construct()
     {
         $host = '127.0.0.1';
         $port = 12345;
         $calls = array();
-        $app = $this->getMockBuilder('\\PHPLivereload\\Application\\ServerApplication')
+        $app = $this->getMockBuilder('\\Fructify\\Reload\\Application\\ServerApplication')
                 ->disableOriginalConstructor()
                 ->setMethods(array('initLoop', 'initServer'))
                 ->getMock();
@@ -46,7 +46,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
     {
         $calls = array();
         $app = new MockServerApplication();
-        $loop = $this->getMock('\\React\\EventLoop\\StreamSelectLoop', array('run'));
+        $loop = $this->getMockBuilder('\\React\\EventLoop\\StreamSelectLoop')->setMethods(array('run'))->getMock();
         $loop->expects($this->any())
             ->method('run')
             ->will($this->returnCallback(function() use(&$calls){
@@ -86,7 +86,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
 
     public function test_addClient()
     {
-        $client1 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client1 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->getMock();
         $client2 = clone $client1;
@@ -107,15 +107,15 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
 
     public function test_removeClient()
     {
-        $client1 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client1 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client1')
                 ->getMock();
-        $client2 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client2 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client2')
                 ->getMock();
-        $client3 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client3 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client3')
                 ->getMock();
@@ -130,18 +130,18 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
         $clients = $clientsProperty->getValue($app);
         $this->assertEquals(array($client1, $client3), array_values($clients));
     }
-    
+
     public function test_removeClient_client_is_the_first_element()
     {
-        $client1 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client1 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client1')
                 ->getMock();
-        $client2 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client2 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client2')
                 ->getMock();
-        $client3 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client3 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client3')
                 ->getMock();
@@ -161,7 +161,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
     {
         $calls = array();
         $file = md5(microtime().rand());
-        $client1 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client1 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client1')
                 ->setMethods(array('reload'))
@@ -171,7 +171,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnCallback(function() use(&$calls){
                 $calls[] = 'client1';
             }));
-        $client2 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client2 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client2')
                 ->setMethods(array('reload'))
@@ -181,7 +181,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnCallback(function() use(&$calls){
                 $calls[] = 'client2';
             }));
-        $client3 = $this->getMockBuilder('\\PHPLivereload\\Protocol\\LivereloadProtocol')
+        $client3 = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\LivereloadProtocol')
                 ->disableOriginalConstructor()
                 ->setMockClassName('client3')
                 ->setMethods(array('reload'))
@@ -202,7 +202,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
     public function test_setOutput()
     {
         $serverApp = new MockServerApplication();
-        $output = $this->getMock('\\Symfony\\Component\\Console\\Output\\OutputInterface');
+        $output = $this->getMockBuilder('\\Symfony\\Component\\Console\\Output\\OutputInterface')->getMock();
         $serverApp->setOutput($output);
         $this->assertEquals($output, $this->getObjectAttribute($serverApp, 'output'));
     }
@@ -210,7 +210,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
     public function test_getOutput()
     {
         $serverApp = new MockServerApplication();
-        $output = $this->getMock('\\Symfony\\Component\\Console\\Output\\OutputInterface');
+        $output = $this->getMockBuilder('\\Symfony\\Component\\Console\\Output\\OutputInterface')->getMock();
         $reflectedClass = new \ReflectionClass($serverApp);
         $properity = $reflectedClass->getProperty('output');
         $properity->setAccessible(true);
@@ -222,7 +222,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
     {
         $calls = [];
         $testConfig = array(1, 2, 3, 4);
-        $serverApp = $this->getMock('\\PHPLivereload\\Application\\ServerApplication', array('scanFiles', 'watchingFileChange'), array(), '', false);
+        $serverApp = $this->getMockBuilder('\\Fructify\\Reload\\Application\\ServerApplication')->setMethods(array('scanFiles', 'watchingFileChange'))->getMock();
         $serverApp->expects($this->any())
             ->method('scanFiles')
             ->will($this->returnCallback(function() use(&$calls){
@@ -233,7 +233,7 @@ class ServerApplicationTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnCallback(function() use(&$calls){
                 $calls[] = 'watchingFileChange';
             }));
-        $loop = $this->getMock('\\React\\EventLoop\\StreamSelectLoop', array('addPeriodicTimer'));
+        $loop = $this->getMockBuilder('\\React\\EventLoop\\StreamSelectLoop')->setMethods(array('addPeriodicTimer'))->getMock();
         $loop->expects($this->any())
             ->method('addPeriodicTimer')
             ->will($this->returnCallback(function($time, $callback) use(&$calls){

@@ -1,5 +1,5 @@
 <?php
-namespace PHPLivereload\Response;
+namespace Fructify\Reload\Response;
 
 use Symfony\Component\HttpFoundation;
 

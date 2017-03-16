@@ -1,16 +1,16 @@
 <?php
-namespace PHPLivereload\Tests\Protocol\WebSocket;
+namespace Fructify\Reload\Tests\Protocol\WebSocket;
 
 use Symfony\Component\HttpFoundation\Request;
-use PHPLivereload\Protocol\WebSocket\WebSocket;
-use PHPLivereload\Response\ResponseWebSocket;
+use Fructify\Reload\Protocol\WebSocket\WebSocket;
+use Fructify\Reload\Response\ResponseWebSocket;
 
 /**
  * Description of WebSocketTest
  *
  * @author ricky
  */
-class WebSocketTest extends \PHPUnit_Framework_TestCase
+class WebSocketTest extends \PHPUnit\Framework\TestCase
 {
     /**
      *  @dataProvider provider_test_getHandshakeReponse

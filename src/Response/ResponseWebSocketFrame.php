@@ -1,7 +1,7 @@
 <?php
-namespace PHPLivereload\Response;
+namespace Fructify\Reload\Response;
 
-use PHPLivereload\Protocol\WebSocket\Frame;
+use Fructify\Reload\Protocol\WebSocket\Frame;
 
 /**
  * Description of Request

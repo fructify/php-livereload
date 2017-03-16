@@ -1,10 +1,10 @@
 <?php
-namespace PHPLivereload\Application;
+namespace Fructify\Reload\Application;
 
 use Symfony\Component\Console\Output\OutputInterface;
 use React\EventLoop\Factory as LoopFactory;
 use React\Socket\Server as SocketServer;
-use PHPLivereload\Protocol;
+use Fructify\Reload\Protocol;
 use Symfony\Component\Finder\Finder;
 
 class ServerApplication

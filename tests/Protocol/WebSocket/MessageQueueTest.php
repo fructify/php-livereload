@@ -1,7 +1,7 @@
 <?php
-namespace PHPLivereload\Tests\Protocol\WebSocket;
+namespace Fructify\Reload\Tests\Protocol\WebSocket;
 
-use PHPLivereload\Protocol\WebSocket\MessageQueue;
+use Fructify\Reload\Protocol\WebSocket\MessageQueue;
 
 class myMessageQueue extends MessageQueue
 {
@@ -22,7 +22,7 @@ class myMessageQueue extends MessageQueue
  *
  * @author ricky
  */
-class MessageQueueTest extends \PHPUnit_Framework_TestCase
+class MessageQueueTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $messageQueue;

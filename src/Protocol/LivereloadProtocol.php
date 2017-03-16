@@ -1,9 +1,9 @@
 <?php
-namespace PHPLivereload\Protocol;
+namespace Fructify\Reload\Protocol;
 
 use React\Socket\Connection as SocketConnection;
-use PHPLivereload\Response\ResponseWebSocketFrame;
-use PHPLivereload\Application\ServerApplication;
+use Fructify\Reload\Response\ResponseWebSocketFrame;
+use Fructify\Reload\Application\ServerApplication;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class LivereloadProtocol

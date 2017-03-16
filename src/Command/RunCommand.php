@@ -1,12 +1,12 @@
 <?php
-namespace PHPLivereload\Command;
+namespace Fructify\Reload\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use PHPLivereload\Application\ServerApplication;
+use Fructify\Reload\Application\ServerApplication;
 
 class RunCommand extends Command
 {

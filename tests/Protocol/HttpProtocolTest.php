@@ -1,26 +1,26 @@
 <?php
-namespace PHPLivereload\Tests\Protocol;
+namespace Fructify\Reload\Tests\Protocol;
 
 use Symfony\Component\HttpFoundation\Request;
-use PHPLivereload\Response\Response;
+use Fructify\Reload\Response\Response;
 
 /**
  * Description of Message
  *
  * @author ricky
  */
-class HttpProtocolTest extends \PHPUnit_Framework_TestCase
+class HttpProtocolTest extends \PHPUnit\Framework\TestCase
 {
     public function test_construct()
     {
         $calls = [];
-        $app = $this->getMockBuilder('\\PHPLivereload\\Application\\ServerApplication')
+        $app = $this->getMockBuilder('\\Fructify\\Reload\\Application\\ServerApplication')
             ->disableOriginalConstructor()
             ->getMock();
         $socket = $this->getMockBuilder('\\React\\Socket\\Server')
             ->disableOriginalConstructor()
             ->getMock();
-        $httpProtocol = $this->getMockBuilder('\\PHPLivereload\\Protocol\\HttpProtocol')
+        $httpProtocol = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\HttpProtocol')
              ->setMethods(array('initEvent'))
              ->disableOriginalConstructor()
              ->getMock();
@@ -55,7 +55,7 @@ class HttpProtocolTest extends \PHPUnit_Framework_TestCase
                 $this->assertEquals('connection', $event);
             }));
 
-        $httpProtocol = $this->getMockBuilder('\\PHPLivereload\\Protocol\\HttpProtocol')
+        $httpProtocol = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\HttpProtocol')
              ->setMethods(array('onConnect'))
              ->disableOriginalConstructor()
              ->getMock();
@@ -87,7 +87,7 @@ class HttpProtocolTest extends \PHPUnit_Framework_TestCase
                 $callback('dataForReceive');
                 $this->assertEquals('data', $event);
             }));
-        $httpProtocol = $this->getMockBuilder('\\PHPLivereload\\Protocol\\HttpProtocol')
+        $httpProtocol = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\HttpProtocol')
              ->setMethods(array('onData'))
              ->disableOriginalConstructor()
              ->getMock();
@@ -112,7 +112,7 @@ class HttpProtocolTest extends \PHPUnit_Framework_TestCase
         $socketConn = $this->getMockBuilder('\\React\\Socket\\Connection')
             ->disableOriginalConstructor()
             ->getMock();
-        $httpProtocol = $this->getMockBuilder('\\PHPLivereload\\Protocol\\HttpProtocol')
+        $httpProtocol = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\HttpProtocol')
              ->setMethods(array('doHttpHandshake', 'handleRequest'))
              ->disableOriginalConstructor()
              ->getMock();
@@ -157,7 +157,7 @@ class HttpProtocolTest extends \PHPUnit_Framework_TestCase
             }));
 
         $methods = array('initWebSocket', 'serveFile', 'notifyChanged', 'serve404Error');
-        $httpProtocol = $this->getMockBuilder('\\PHPLivereload\\Protocol\\HttpProtocol')
+        $httpProtocol = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\HttpProtocol')
              ->setMethods($methods)
              ->disableOriginalConstructor()
              ->getMock();
@@ -198,7 +198,7 @@ class HttpProtocolTest extends \PHPUnit_Framework_TestCase
     {
         $calls = [];
         $data = md5(microtime().rand());
-        $httpProtocol = $this->getMockBuilder('\\PHPLivereload\\Protocol\\HttpProtocol')
+        $httpProtocol = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\HttpProtocol')
              ->disableOriginalConstructor()
              ->getMock();
         $socketConn = $this->getMockBuilder('\\React\\Socket\\Connection')
@@ -226,7 +226,7 @@ class HttpProtocolTest extends \PHPUnit_Framework_TestCase
     public function test_serve404Error()
     {
         $calls = [];
-        $httpProtocol = $this->getMockBuilder('\\PHPLivereload\\Protocol\\HttpProtocol')
+        $httpProtocol = $this->getMockBuilder('\\Fructify\\Reload\\Protocol\\HttpProtocol')
              ->disableOriginalConstructor()
              ->getMock();
         $socketConn = $this->getMockBuilder('\\React\\Socket\\Connection')

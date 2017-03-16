@@ -1,11 +1,14 @@
 {
-    "name": "rickysu/php-livereload",
+    "name": "fructify/reload",
     "description": "a livereload server implement by php",
     "license": "MIT",
     "authors": [
         {
             "name": "Ricky Su",
             "email": "ricky@ez2.us"
+        },{
+            "name": "Brad Jones",
+            "email": "brad@bjc.id.au"
         }
     ],
     "require": {
